@@ -8,27 +8,44 @@
   z-index: 0;
   background: linear-gradient(
     135deg,
-    #fdfbf9 0%,
-    #f8f4ef 25%,
-    #faf6f1 50%,
-    #f5efe6 75%,
-    #faf8f5 100%
+    #2d1f3d 0%,
+    #4a2c4a 15%,
+    #6b3a5c 30%,
+    #8b4a6b 45%,
+    #a85a7a 60%,
+    #c76b8a 75%,
+    #e8849e 90%,
+    #ffb3c6 100%
   );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Gradient orbs for 3D depth */
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
+  filter: blur(100px);
+  opacity: 0.7;
   animation: float-orb 20s ease-in-out infinite;
 }
 
 .orb-1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(201, 168, 108, 0.3), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.5), transparent 70%);
   top: -200px;
   right: -100px;
   animation-delay: 0s;
@@ -37,7 +54,7 @@
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(212, 165, 165, 0.25), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.5), transparent 70%);
   bottom: -150px;
   left: -100px;
   animation-delay: -5s;
@@ -46,7 +63,7 @@
 .orb-3 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(156, 175, 136, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(199, 21, 133, 0.4), transparent 70%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -56,7 +73,7 @@
 .orb-4 {
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(232, 212, 184, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent 70%);
   top: 30%;
   right: 10%;
   animation-delay: -7s;
@@ -137,7 +154,7 @@
   position: absolute;
   width: 100%;
   height: 160%;
-  background: rgba(212, 165, 165, 0.4);
+  background: rgba(255, 105, 180, 0.6);
   border-radius: 50% 50% 0 0;
 }
 
@@ -154,19 +171,21 @@
 }
 
 .particle-ring {
-  border: 2px solid rgba(201, 168, 108, 0.4);
+  border: 2px solid rgba(255, 215, 0, 0.6);
   border-radius: 50%;
   background: transparent;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 .particle-dot {
   background: radial-gradient(
     circle,
-    rgba(201, 168, 108, 0.5) 0%,
-    rgba(201, 168, 108, 0.2) 50%,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 182, 193, 0.5) 50%,
     transparent 70%
   );
   border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 @keyframes rise {
@@ -200,7 +219,7 @@
 .bokeh-1 {
   width: 80px;
   height: 80px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1) 60%, transparent);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 182, 193, 0.3) 60%, transparent);
   top: 15%;
   left: 10%;
   animation-delay: 0s;
@@ -209,7 +228,7 @@
 .bokeh-2 {
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle, rgba(201, 168, 108, 0.3), rgba(201, 168, 108, 0.1) 50%, transparent);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.5), rgba(255, 215, 0, 0.2) 50%, transparent);
   top: 25%;
   right: 15%;
   animation-delay: -3s;
@@ -218,7 +237,7 @@
 .bokeh-3 {
   width: 60px;
   height: 60px;
-  background: radial-gradient(circle, rgba(212, 165, 165, 0.4), transparent 60%);
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.6), transparent 60%);
   bottom: 30%;
   left: 20%;
   animation-delay: -6s;
@@ -227,7 +246,7 @@
 .bokeh-4 {
   width: 100px;
   height: 100px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 60%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent 60%);
   bottom: 20%;
   right: 25%;
   animation-delay: -9s;
@@ -236,7 +255,7 @@
 .bokeh-5 {
   width: 40px;
   height: 40px;
-  background: radial-gradient(circle, rgba(156, 175, 136, 0.5), transparent 60%);
+  background: radial-gradient(circle, rgba(199, 21, 133, 0.6), transparent 60%);
   top: 60%;
   left: 60%;
   animation-delay: -4s;
@@ -245,7 +264,7 @@
 .bokeh-6 {
   width: 90px;
   height: 90px;
-  background: radial-gradient(circle, rgba(232, 212, 184, 0.5), transparent 60%);
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.7), transparent 60%);
   top: 40%;
   left: 35%;
   animation-delay: -7s;
