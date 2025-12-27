@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import FloatingBackground from './components/FloatingBackground';
+import WelcomePopup from './components/WelcomePopup';
 import './App.css';
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero');
+  const [showWelcomePopup, setShowWelcomePopup] = useState(true); // Show immediately on page load
 
   const navItems = [
     { id: 'welcome', label: 'Welcome', icon: '🙏' },
@@ -14,6 +16,10 @@ function App() {
     { id: 'directions', label: 'Bus Route', icon: '🚌' },
     { id: 'contact', label: 'Contact', icon: '📞' },
   ];
+
+  const handleClosePopup = () => {
+    setShowWelcomePopup(false);
+  };
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -112,6 +118,9 @@ function App() {
   return (
     <div className="app">
       <FloatingBackground />
+      
+      {/* Welcome Popup */}
+      <WelcomePopup isVisible={showWelcomePopup} onClose={handleClosePopup} />
       
       {/* Navigation Bar */}
       <motion.nav 
