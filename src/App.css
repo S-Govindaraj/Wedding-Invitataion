@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 15px;
+  padding: 6px 5px;
   background: linear-gradient(180deg, rgba(250, 248, 245, 0.98) 0%, rgba(250, 248, 245, 0.92) 100%);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(201, 168, 108, 0.15);
@@ -23,43 +23,48 @@
 .nav-links {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 4px;
-  flex-wrap: nowrap;
+  gap: 0;
+  width: 100%;
+  max-width: 400px;
 }
 
 .nav-link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   background: none;
   border: none;
   font-family: 'Montserrat', sans-serif;
   color: var(--text-light);
-  padding: 8px 10px;
+  padding: 6px 4px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 12px;
+  border-radius: 8px;
   position: relative;
-  min-width: 50px;
+  flex: 1;
+  min-width: 0;
 }
 
 .nav-icon {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1;
   transition: transform 0.3s ease;
 }
 
 .nav-label {
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .nav-link:hover {
@@ -79,13 +84,36 @@
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: 4px;
+  bottom: 2px;
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
   background: var(--primary);
   border-radius: 50%;
+}
+
+/* Small phones */
+@media (min-width: 360px) {
+  .navbar {
+    padding: 8px 10px;
+  }
+  
+  .nav-links {
+    max-width: 450px;
+  }
+  
+  .nav-link {
+    padding: 6px 6px;
+  }
+  
+  .nav-icon {
+    font-size: 1.3rem;
+  }
+  
+  .nav-label {
+    font-size: 0.55rem;
+  }
 }
 
 /* Tablet and Desktop */
@@ -96,13 +124,15 @@
   
   .nav-links {
     gap: 8px;
+    max-width: 700px;
+    justify-content: center;
   }
   
   .nav-link {
     flex-direction: row;
     gap: 8px;
     padding: 10px 16px;
-    min-width: auto;
+    flex: none;
   }
   
   .nav-icon {
@@ -119,6 +149,7 @@
 @media (min-width: 900px) {
   .nav-links {
     gap: 10px;
+    max-width: none;
   }
   
   .nav-link {
