@@ -31,7 +31,7 @@ const WelcomePopup = ({ isVisible, onClose }) => {
       createConfetti();
       const timer = setTimeout(() => {
         onClose();
-      }, 2000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [isVisible, onClose, createConfetti]);
