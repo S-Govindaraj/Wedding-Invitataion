@@ -1,8 +1,47 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import FloatingBackground from './components/FloatingBackground';
 import './App.css';
 
 function App() {
+  const [activeSection, setActiveSection] = useState('hero');
+
+  const navItems = [
+    { id: 'welcome', label: 'Welcome', icon: '🙏' },
+    { id: 'couple', label: 'Couple', icon: '💑' },
+    { id: 'events', label: 'Events', icon: '📅' },
+    { id: 'venue', label: 'Location', icon: '📍' },
+    { id: 'directions', label: 'Bus Route', icon: '🚌' },
+    { id: 'contact', label: 'Contact', icon: '📞' },
+  ];
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'welcome', 'couple', 'events', 'venue', 'directions', 'contact'];
+      const scrollPosition = window.scrollY + 150;
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const fadeInUp = {
     hidden: { opacity: 0, y: 60 },
     visible: { 
@@ -74,8 +113,37 @@ function App() {
     <div className="app">
       <FloatingBackground />
       
+      {/* Navigation Bar */}
+      <motion.nav 
+        className="navbar"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <ul className="nav-links">
+          {navItems.map((item, index) => (
+            <motion.li 
+              key={item.id}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <button
+                className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
+                onClick={() => scrollToSection(item.id)}
+                title={item.label}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-label">{item.label}</span>
+              </button>
+            </motion.li>
+          ))}
+        </ul>
+      </motion.nav>
+      
       {/* Hero Section */}
       <motion.section 
+        id="hero"
         className="hero"
         initial="hidden"
         animate="visible"
@@ -117,6 +185,7 @@ function App() {
 
       {/* Welcome Message */}
       <motion.section 
+        id="welcome"
         className="welcome"
         initial="hidden"
         whileInView="visible"
@@ -142,6 +211,7 @@ function App() {
 
       {/* Couple Section */}
       <motion.section 
+        id="couple"
         className="couple"
         initial="hidden"
         whileInView="visible"
@@ -168,6 +238,7 @@ function App() {
 
       {/* Events Timeline */}
       <motion.section 
+        id="events"
         className="events"
         initial="hidden"
         whileInView="visible"
@@ -201,6 +272,7 @@ function App() {
 
       {/* Venue Section */}
       <motion.section 
+        id="venue"
         className="venue"
         initial="hidden"
         whileInView="visible"
@@ -237,6 +309,7 @@ function App() {
 
       {/* Directions Section */}
       <motion.section 
+        id="directions"
         className="directions"
         initial="hidden"
         whileInView="visible"
@@ -267,6 +340,7 @@ function App() {
 
       {/* Contact Section */}
       <motion.section 
+        id="contact"
         className="contact"
         initial="hidden"
         whileInView="visible"

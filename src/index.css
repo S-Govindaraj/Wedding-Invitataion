@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -31,4 +32,5 @@ body {
 #root {
   min-height: 100vh;
 }
+
 
