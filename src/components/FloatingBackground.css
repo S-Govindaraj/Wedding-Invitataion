@@ -4,326 +4,107 @@
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   z-index: 0;
-  background: linear-gradient(
-    135deg,
-    #2d1f3d 0%,
-    #4a2c4a 15%,
-    #6b3a5c 30%,
-    #8b4a6b 45%,
-    #a85a7a 60%,
-    #c76b8a 75%,
-    #e8849e 90%,
-    #ffb3c6 100%
-  );
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
+  overflow: hidden;
 }
 
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.floating-background canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-/* Gradient orbs for 3D depth */
-.gradient-orb {
+/* Gradient overlay for added depth and blend with content */
+.gradient-overlay {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.7;
-  animation: float-orb 20s ease-in-out infinite;
-}
-
-.orb-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 105, 180, 0.5), transparent 70%);
-  top: -200px;
-  right: -100px;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255, 182, 193, 0.5), transparent 70%);
-  bottom: -150px;
-  left: -100px;
-  animation-delay: -5s;
-}
-
-.orb-3 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(199, 21, 133, 0.4), transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: -10s;
-}
-
-.orb-4 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent 70%);
-  top: 30%;
-  right: 10%;
-  animation-delay: -7s;
-}
-
-@keyframes float-orb {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(30px, -30px) scale(1.05);
-  }
-  50% {
-    transform: translate(-20px, 20px) scale(0.95);
-  }
-  75% {
-    transform: translate(20px, 10px) scale(1.02);
-  }
-}
-
-/* Light rays effect */
-.light-rays {
-  position: absolute;
-  top: -50%;
-  left: 50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 180deg at 50% 50%,
-    transparent 0deg,
-    rgba(255, 255, 255, 0.03) 10deg,
-    transparent 20deg,
-    transparent 60deg,
-    rgba(255, 255, 255, 0.02) 70deg,
-    transparent 80deg,
-    transparent 120deg,
-    rgba(255, 255, 255, 0.03) 130deg,
-    transparent 140deg,
-    transparent 180deg,
-    rgba(255, 255, 255, 0.02) 190deg,
-    transparent 200deg,
-    transparent 240deg,
-    rgba(255, 255, 255, 0.03) 250deg,
-    transparent 260deg,
-    transparent 300deg,
-    rgba(255, 255, 255, 0.02) 310deg,
-    transparent 320deg
-  );
-  transform: translateX(-50%);
-  animation: rotate-rays 60s linear infinite;
-}
-
-@keyframes rotate-rays {
-  from {
-    transform: translateX(-50%) rotate(0deg);
-  }
-  to {
-    transform: translateX(-50%) rotate(360deg);
-  }
-}
-
-/* Floating particles */
-.floating-particle {
-  position: absolute;
-  bottom: -50px;
-  animation: rise linear infinite;
-  pointer-events: none;
-}
-
-.particle-heart {
-  background: transparent;
-  position: relative;
-}
-
-.particle-heart::before,
-.particle-heart::after {
-  content: '';
-  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 160%;
-  background: rgba(255, 105, 180, 0.6);
-  border-radius: 50% 50% 0 0;
+  height: 100%;
+  pointer-events: none;
+  background: 
+    /* Top vignette */
+    radial-gradient(
+      ellipse 100% 40% at 50% 0%,
+      rgba(45, 31, 61, 0.3) 0%,
+      transparent 70%
+    ),
+    /* Bottom vignette */
+    radial-gradient(
+      ellipse 100% 40% at 50% 100%,
+      rgba(45, 31, 61, 0.4) 0%,
+      transparent 70%
+    ),
+    /* Side vignettes */
+    radial-gradient(
+      ellipse 30% 100% at 0% 50%,
+      rgba(45, 31, 61, 0.2) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 30% 100% at 100% 50%,
+      rgba(45, 31, 61, 0.2) 0%,
+      transparent 70%
+    ),
+    /* Subtle center glow */
+    radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      transparent 0%,
+      rgba(45, 31, 61, 0.15) 100%
+    );
+  z-index: 1;
 }
 
-.particle-heart::before {
-  left: -30%;
-  transform: rotate(-45deg);
-  transform-origin: 100% 100%;
-}
-
-.particle-heart::after {
-  left: 30%;
-  transform: rotate(45deg);
-  transform-origin: 0 100%;
-}
-
-.particle-ring {
-  border: 2px solid rgba(255, 215, 0, 0.6);
-  border-radius: 50%;
-  background: transparent;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-}
-
-.particle-dot {
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 182, 193, 0.5) 50%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-}
-
-@keyframes rise {
-  0% {
-    bottom: -50px;
-    opacity: 0;
-    transform: translateX(0) rotate(0deg) scale(0.5);
-  }
-  10% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  90% {
-    opacity: 0.6;
-  }
-  100% {
-    bottom: 110vh;
-    opacity: 0;
-    transform: translateX(100px) rotate(720deg) scale(0.3);
+/* Performance optimization for mobile */
+@media (max-width: 768px) {
+  .floating-background canvas {
+    /* Slightly lower pixel ratio for mobile performance */
+    image-rendering: optimizeSpeed;
   }
 }
 
-/* Bokeh lights */
-.bokeh {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(2px);
-  animation: bokeh-float 15s ease-in-out infinite;
-}
-
-.bokeh-1 {
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 182, 193, 0.3) 60%, transparent);
-  top: 15%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.bokeh-2 {
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.5), rgba(255, 215, 0, 0.2) 50%, transparent);
-  top: 25%;
-  right: 15%;
-  animation-delay: -3s;
-}
-
-.bokeh-3 {
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, rgba(255, 105, 180, 0.6), transparent 60%);
-  bottom: 30%;
-  left: 20%;
-  animation-delay: -6s;
-}
-
-.bokeh-4 {
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent 60%);
-  bottom: 20%;
-  right: 25%;
-  animation-delay: -9s;
-}
-
-.bokeh-5 {
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, rgba(199, 21, 133, 0.6), transparent 60%);
-  top: 60%;
-  left: 60%;
-  animation-delay: -4s;
-}
-
-.bokeh-6 {
-  width: 90px;
-  height: 90px;
-  background: radial-gradient(circle, rgba(255, 182, 193, 0.7), transparent 60%);
-  top: 40%;
-  left: 35%;
-  animation-delay: -7s;
-}
-
-@keyframes bokeh-float {
+/* Subtle animated glow effect */
+@keyframes pulse-glow {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.6;
-  }
-  25% {
-    transform: translate(20px, -30px) scale(1.1);
-    opacity: 0.8;
+    opacity: 0.3;
   }
   50% {
-    transform: translate(-15px, 15px) scale(0.9);
     opacity: 0.5;
   }
-  75% {
-    transform: translate(25px, 10px) scale(1.05);
-    opacity: 0.7;
-  }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .gradient-orb {
-    filter: blur(60px);
-  }
-
-  .orb-1 {
-    width: 300px;
-    height: 300px;
-  }
-
-  .orb-2 {
-    width: 250px;
-    height: 250px;
-  }
-
-  .orb-3 {
-    width: 200px;
-    height: 200px;
-  }
-
-  .orb-4 {
-    width: 180px;
-    height: 180px;
-  }
-
-  .bokeh {
-    filter: blur(1px);
-  }
-
-  .bokeh-1, .bokeh-2, .bokeh-3, .bokeh-4, .bokeh-5, .bokeh-6 {
-    width: 50px;
-    height: 50px;
-  }
+/* Optional: Add extra decorative elements via CSS */
+.floating-background::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 105, 180, 0.1) 0%,
+    transparent 70%
+  );
+  animation: pulse-glow 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
 }
 
-
-
+.floating-background::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.08) 0%,
+    transparent 70%
+  );
+  animation: pulse-glow 5s ease-in-out infinite;
+  animation-delay: 2s;
+  pointer-events: none;
+  z-index: 0;
+}
