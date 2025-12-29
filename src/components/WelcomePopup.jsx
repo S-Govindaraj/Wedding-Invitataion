@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './WelcomePopup.css';
 
-const WelcomePopup = ({ isVisible, onClose }) => {
+const WelcomePopup = ({ isVisible, onClose, guestName }) => {
   const [confetti, setConfetti] = useState([]);
 
   const createConfetti = useCallback(() => {
@@ -181,7 +181,7 @@ const WelcomePopup = ({ isVisible, onClose }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Welcome
+                {guestName ? `Welcome, ${guestName}!` : 'Welcome'}
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
