@@ -1,5 +1,19 @@
 [
   {
+    "id": "1767031280127",
+    "guestName": "Direct Visit",
+    "timestamp": "2025-12-29T18:01:19.723Z",
+    "ip": "::1",
+    "location": {
+      "city": "Local",
+      "region": "Dev",
+      "country": "Local"
+    },
+    "deviceType": "Desktop",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+    "referrer": "Direct"
+  },
+  {
     "id": "1766908530610",
     "guestName": "Direct Visit",
     "timestamp": "2025-12-28T07:55:30.599Z",

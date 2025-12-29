@@ -325,13 +325,20 @@ function Scene() {
 function FloatingBackground() {
   return (
     <div className="floating-background">
+      {/* Wedding image as base background */}
+      <div className="wedding-bg-image" />
+      
+      {/* Dark overlay for better contrast */}
+      <div className="wedding-bg-overlay" />
+      
       <Canvas
         camera={{ position: [0, 0, 8], fov: 60 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
+        style={{ background: 'transparent' }}
       >
-        <color attach="background" args={['#2d1f3d']} />
-        <fog attach="fog" args={['#2d1f3d', 8, 25]} />
+        {/* Transparent background to show wedding image behind */}
+        <fog attach="fog" args={['rgba(45, 31, 61, 0.7)', 8, 25]} />
         <Scene />
       </Canvas>
       
