@@ -182,8 +182,10 @@
   font-size: clamp(0.75rem, 2vw, 0.9rem);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--text-light);
+  color: var(--primary-light);
   margin-bottom: 30px;
+  text-shadow: var(--text-shadow-soft);
+  font-weight: 500;
 }
 
 .names-container {
@@ -197,11 +199,12 @@
 .name {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(3rem, 12vw, 6rem);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
-  color: var(--text-dark);
+  color: #fff;
   line-height: 1.1;
   letter-spacing: 0.02em;
+  text-shadow: var(--text-shadow-strong), var(--text-glow);
 }
 
 .ampersand {
@@ -209,43 +212,47 @@
   font-size: clamp(2rem, 6vw, 3rem);
   color: var(--primary);
   font-style: italic;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .subtitle {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-  color: var(--text-light);
+  color: #fff;
   max-width: 500px;
   margin: 0 auto 40px;
   line-height: 1.8;
-  font-weight: 300;
+  font-weight: 400;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .date-badge {
   display: inline-flex;
   flex-direction: column;
   padding: 25px 50px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(199, 21, 133, 0.2);
+  background: linear-gradient(135deg, rgba(45, 31, 61, 0.85), rgba(74, 44, 74, 0.8));
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.15);
 }
 
 .date-day {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--primary-dark);
+  color: var(--primary);
   margin-bottom: 5px;
+  font-weight: 600;
 }
 
 .date-full {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.3rem, 4vw, 1.8rem);
-  font-weight: 500;
-  color: var(--text-dark);
+  font-weight: 600;
+  color: #fff;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .scroll-indicator {
@@ -254,13 +261,16 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: var(--text-light);
+  color: var(--primary-light);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
+  text-shadow: var(--text-shadow-soft);
+  font-weight: 500;
 }
 
 .scroll-indicator svg {
-  opacity: 0.6;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
 }
 
 /* ===== WELCOME SECTION ===== */
@@ -275,43 +285,47 @@
   font-size: 1.5rem;
   color: var(--primary);
   margin-bottom: 20px;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
 }
 
 .welcome h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 6vw, 3rem);
-  font-weight: 400;
-  color: var(--text-dark);
+  font-weight: 500;
+  color: var(--primary);
   margin-bottom: 30px;
+  text-shadow: var(--text-shadow-strong);
 }
 
 .welcome-message {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   line-height: 2;
-  color: var(--text-light);
+  color: #fff;
   max-width: 700px;
   margin: 0 auto;
-  font-weight: 300;
+  font-weight: 400;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .welcome-message-english {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.85rem, 2vw, 0.95rem);
   line-height: 1.8;
-  color: var(--text-light);
+  color: var(--primary-light);
   max-width: 600px;
   margin: 20px auto 0;
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
-  opacity: 0.8;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .decorative-line {
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #ffd700, #ff69b4, transparent);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffd700, #ff69b4, #ffd700, transparent);
   margin: 50px auto 0;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
 /* ===== COUPLE SECTION ===== */
@@ -324,10 +338,11 @@
 .couple h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 6vw, 3rem);
-  font-weight: 400;
-  color: var(--text-dark);
+  font-weight: 500;
+  color: var(--primary);
   text-align: center;
   margin-bottom: 50px;
+  text-shadow: var(--text-shadow-strong);
 }
 
 .couple-grid {
@@ -340,39 +355,43 @@
 }
 
 .couple-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 105, 180, 0.3);
+  background: linear-gradient(135deg, rgba(45, 31, 61, 0.9), rgba(74, 44, 74, 0.85));
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 215, 0, 0.4);
   border-radius: 20px;
   padding: 40px 50px;
   text-align: center;
   width: 100%;
   max-width: 350px;
-  box-shadow: 0 10px 40px rgba(199, 21, 133, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 105, 180, 0.15);
 }
 
 .couple-icon {
   font-size: 3rem;
   margin-bottom: 15px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 .couple-card h3 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--text-dark);
+  font-weight: 600;
+  color: #fff;
   margin-bottom: 10px;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .couple-job {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
-  color: var(--text-light);
+  color: var(--primary-light);
   line-height: 1.6;
+  font-weight: 400;
 }
 
 .couple-ampersand {
   font-size: 2.5rem;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 @media (min-width: 768px) {
@@ -393,19 +412,21 @@
 .events h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 6vw, 3rem);
-  font-weight: 400;
-  color: var(--text-dark);
+  font-weight: 500;
+  color: var(--primary);
   text-align: center;
   margin-bottom: 10px;
+  text-shadow: var(--text-shadow-strong);
 }
 
 .section-subtitle {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  color: var(--text-light);
+  color: #fff;
   text-align: center;
   margin-bottom: 50px;
-  font-weight: 300;
+  font-weight: 400;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .events-grid {
@@ -418,42 +439,46 @@
 }
 
 .event-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 105, 180, 0.3);
+  background: linear-gradient(135deg, rgba(45, 31, 61, 0.9), rgba(74, 44, 74, 0.85));
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 215, 0, 0.4);
   border-radius: 16px;
   padding: 40px 30px;
   text-align: center;
   transition: all 0.4s ease;
-  box-shadow: 0 10px 40px rgba(199, 21, 133, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 105, 180, 0.1);
 }
 
 .event-icon {
   font-size: 2.5rem;
   display: block;
   margin-bottom: 20px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 .event-card h3 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--text-dark);
+  font-weight: 600;
+  color: #fff;
   margin-bottom: 15px;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .event-date {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
-  color: var(--text-light);
+  color: var(--primary-light);
   margin-bottom: 5px;
+  font-weight: 400;
 }
 
 .event-time {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--primary-dark);
+  font-weight: 700;
+  color: var(--primary);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 /* ===== VENUE SECTION ===== */
@@ -468,42 +493,46 @@
   margin: 0 auto;
   text-align: center;
   padding: 60px 40px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+  background: linear-gradient(135deg, rgba(45, 31, 61, 0.9), rgba(74, 44, 74, 0.85));
   backdrop-filter: blur(15px);
   border-radius: 24px;
-  border: 1px solid rgba(255, 105, 180, 0.3);
-  box-shadow: 0 20px 60px rgba(199, 21, 133, 0.2);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 105, 180, 0.15);
 }
 
 .venue-icon {
   font-size: 3rem;
   margin-bottom: 20px;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
 }
 
 .venue h2 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--primary-dark);
+  color: var(--primary);
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .venue-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.5rem, 5vw, 2.2rem);
-  font-weight: 500;
-  color: var(--text-dark);
+  font-weight: 600;
+  color: #fff;
   margin-bottom: 15px;
   line-height: 1.3;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .venue-address {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
-  color: var(--text-light);
+  color: var(--primary-light);
   line-height: 1.8;
   margin-bottom: 30px;
+  font-weight: 400;
 }
 
 .map-button {
@@ -540,32 +569,36 @@
   margin: 0 auto;
   text-align: center;
   padding: 50px 40px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+  background: linear-gradient(135deg, rgba(45, 31, 61, 0.9), rgba(74, 44, 74, 0.85));
   backdrop-filter: blur(15px);
   border-radius: 24px;
-  border: 1px solid rgba(255, 105, 180, 0.3);
-  box-shadow: 0 20px 60px rgba(199, 21, 133, 0.15);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 105, 180, 0.1);
 }
 
 .directions-icon {
   font-size: 2.5rem;
   margin-bottom: 15px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 .directions h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.8rem, 5vw, 2.2rem);
-  font-weight: 400;
-  color: var(--text-dark);
+  font-weight: 500;
+  color: var(--primary);
   margin-bottom: 20px;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .directions-text {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
-  color: var(--text-light);
+  color: #fff;
   line-height: 1.9;
   margin-bottom: 25px;
+  font-weight: 400;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .bus-routes {
@@ -580,7 +613,8 @@
   font-size: 0.8rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--primary-dark);
+  color: var(--primary);
+  font-weight: 600;
 }
 
 .route-tags {
@@ -591,13 +625,14 @@
 }
 
 .route-tag {
-  background: linear-gradient(135deg, rgba(255, 105, 180, 0.3), rgba(199, 21, 133, 0.2));
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 105, 180, 0.2));
   padding: 8px 18px;
   border-radius: 25px;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   color: #fff;
-  border: 1px solid rgba(255, 105, 180, 0.4);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  font-weight: 500;
 }
 
 /* ===== CONTACT SECTION ===== */
@@ -612,31 +647,34 @@
   margin: 0 auto;
   text-align: center;
   padding: 50px 40px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+  background: linear-gradient(135deg, rgba(45, 31, 61, 0.9), rgba(74, 44, 74, 0.85));
   backdrop-filter: blur(15px);
   border-radius: 24px;
-  border: 1px solid rgba(255, 105, 180, 0.3);
-  box-shadow: 0 20px 60px rgba(199, 21, 133, 0.2);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 105, 180, 0.15);
 }
 
 .contact-icon {
   font-size: 2.5rem;
   margin-bottom: 15px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 .contact h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.6rem, 4vw, 2rem);
-  font-weight: 400;
-  color: var(--text-dark);
+  font-weight: 500;
+  color: var(--primary);
   margin-bottom: 10px;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .contact-name {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
-  color: var(--text-light);
+  color: #fff;
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .contact-phone {
@@ -701,42 +739,46 @@
 .footer-names {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 400;
+  font-weight: 500;
   font-style: italic;
-  color: var(--text-dark);
+  color: #fff;
   margin-bottom: 10px;
+  text-shadow: var(--text-shadow-strong);
 }
 
 .footer-date {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0.2em;
-  color: var(--text-light);
+  color: var(--primary);
   margin-bottom: 30px;
+  font-weight: 600;
 }
 
 .footer-ornament {
   font-size: 2rem;
   color: var(--primary);
   margin-bottom: 20px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 .footer-message {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  color: var(--text-light);
-  font-weight: 300;
+  color: #fff;
+  font-weight: 400;
   line-height: 1.8;
+  text-shadow: var(--text-shadow-soft);
 }
 
 .footer-message-en {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
-  color: var(--text-light);
-  font-weight: 300;
+  color: var(--primary-light);
+  font-weight: 400;
   font-style: italic;
   margin-top: 10px;
-  opacity: 0.8;
+  text-shadow: var(--text-shadow-soft);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
