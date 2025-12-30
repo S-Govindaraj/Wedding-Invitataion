@@ -1,12 +1,25 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import FloatingBackground from './components/FloatingBackground';
 import WelcomePopup from './components/WelcomePopup';
+import { trackVisitor, formatGuestName } from './utils/tracking';
 import './App.css';
 
 function App() {
+  const { guestSlug } = useParams();
   const [activeSection, setActiveSection] = useState('hero');
-  const [showWelcomePopup, setShowWelcomePopup] = useState(true); // Show immediately on page load
+  const [showWelcomePopup, setShowWelcomePopup] = useState(true);
+  const [guestName, setGuestName] = useState(null);
+
+  // Track visitor on page load
+  useEffect(() => {
+    const formattedName = formatGuestName(guestSlug);
+    setGuestName(formattedName);
+    
+    // Track the visit
+    trackVisitor(formattedName);
+  }, [guestSlug]);
 
   const navItems = [
     { id: 'welcome', label: 'Welcome', icon: '🙏' },
@@ -120,7 +133,7 @@ function App() {
       <FloatingBackground />
       
       {/* Welcome Popup */}
-      <WelcomePopup isVisible={showWelcomePopup} onClose={handleClosePopup} />
+      <WelcomePopup isVisible={showWelcomePopup} onClose={handleClosePopup} guestName={guestName} />
       
       {/* Navigation Bar */}
       <motion.nav 

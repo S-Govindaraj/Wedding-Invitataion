@@ -6,14 +6,19 @@
 
 :root {
   --primary: #ffd700;
-  --primary-light: #ffecb3;
+  --primary-light: #fff3cd;
   --primary-dark: #ffb347;
   --text-dark: #ffffff;
-  --text-light: rgba(255, 255, 255, 0.85);
+  --text-light: #f8f4ff;
   --bg-cream: #2d1f3d;
   --bg-warm: #4a2c4a;
   --accent-rose: #ff69b4;
   --accent-sage: #ffb6c1;
+  
+  /* Text shadows for better readability */
+  --text-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --text-shadow-strong: 0 2px 10px rgba(0, 0, 0, 0.7), 0 4px 20px rgba(0, 0, 0, 0.5);
+  --text-glow: 0 0 20px rgba(255, 215, 0, 0.4), 0 0 40px rgba(255, 105, 180, 0.2);
 }
 
 html {
