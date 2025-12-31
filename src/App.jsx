@@ -103,8 +103,8 @@ function App() {
     venue: "Lakshmi Narayana Marriage Hall",
     address: "Indira Nagar, Srivilliputtur, Tamil Nadu",
     mapLink: "https://maps.google.com/?q=Lakshmi+Narayana+Marriage+Hall+Indira+Nagar+Srivilliputtur",
-    contact: "7339525771",
-    contactName: "Soma Sundaram",
+    contact: "8220172513",
+    contactName: "Govindaraj",
     directions: "From Srivilliputtur Bus Stand, take buses going to Watrap, Kansapuram, Maharajapuram, Kunnur, Krishnan Koil, or Koomapatti. Ask for Indira Nagar bus stop. The hall is just 100 meters walking distance from the stop.",
     events: [
       {
@@ -177,9 +177,9 @@ function App() {
           </motion.p>
           
           <motion.div className="names-container" variants={fadeInUp}>
-            <span className="name">{weddingDetails.brideName}</span>
-            <span className="ampersand">&</span>
             <span className="name">{weddingDetails.groomName}</span>
+            <span className="ampersand">&</span>
+            <span className="name">{weddingDetails.brideName}</span>
           </motion.div>
           
           <motion.p className="subtitle" variants={fadeInUp}>
@@ -242,18 +242,18 @@ function App() {
       >
         <motion.h2 variants={fadeInUp}>The Couple</motion.h2>
         <motion.div className="couple-grid" variants={staggerContainer}>
-          <motion.div className="couple-card groom" variants={fadeInUp}>
-            <div className="couple-icon">👰</div>
-            <h3>{weddingDetails.brideFull}</h3>
-            <p className="couple-job">{weddingDetails.brideJob}</p>
-          </motion.div>
-          <motion.div className="couple-ampersand" variants={scaleIn}>
-            💑
-          </motion.div>
           <motion.div className="couple-card bride" variants={fadeInUp}>
             <div className="couple-icon">🤵</div>
             <h3>{weddingDetails.groomFull}</h3>
             <p className="couple-job">{weddingDetails.groomJob}</p>
+          </motion.div>
+          <motion.div className="couple-ampersand" variants={scaleIn}>
+            💑
+          </motion.div>
+          <motion.div className="couple-card groom" variants={fadeInUp}>
+            <div className="couple-icon">👰</div>
+            <h3>{weddingDetails.brideFull}</h3>
+            <p className="couple-job">{weddingDetails.brideJob}</p>
           </motion.div>
         </motion.div>
       </motion.section>
@@ -415,7 +415,7 @@ function App() {
           viewport={{ once: true }}
         >
           <div className="footer-names">
-            {weddingDetails.brideName} ❤️ {weddingDetails.groomName}
+            {weddingDetails.groomName} ❤️ {weddingDetails.brideName}
           </div>
           <div className="footer-date">22nd February 2026</div>
           <div className="footer-ornament">🙏</div>
