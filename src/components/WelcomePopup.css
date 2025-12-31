@@ -8,12 +8,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(45, 31, 61, 0.7);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: linear-gradient(
+    135deg,
+    #2d1f3d 0%,
+    #4a2c4a 50%,
+    #2d1f3d 100%
+  );
 }
 
-/* Confetti */
 .confetti-container {
   position: absolute;
   top: 0;
@@ -33,7 +35,6 @@
   transform: rotate(45deg);
 }
 
-/* Sparkle burst effect */
 .sparkle-burst {
   position: absolute;
   width: 20px;
@@ -213,7 +214,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 480px) {
   .welcome-popup {
     padding: 40px 35px;

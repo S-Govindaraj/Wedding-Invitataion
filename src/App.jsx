@@ -109,13 +109,13 @@ function App() {
     events: [
       {
         name: "Engagement Ceremony",
-        time: "6:30 PM - 8:00 PM",
+        time: "6:00 PM - 7:30 PM",
         date: "Saturday, 21st February 2026",
         icon: "💍"
       },
       {
         name: "Wedding Ceremony",
-        time: "7:30 AM - 9:00 AM",
+        time: "7:45 AM - 9:00 AM",
         date: "Sunday, 22nd February 2026",
         icon: "🪔"
       },
