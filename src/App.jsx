@@ -95,7 +95,7 @@ function App() {
     groomName: "Govindaraj",
     brideName: "Sathya",
     groomFull: "S. Govindaraj, B.E",
-    groomJob: "Full Stack Developer at Galent AI, Chennai",
+    groomJob: "Software Developer at Galent AI, Chennai",
     brideFull: "S. Sathya, B.Sc. B.Ed",
     brideJob: "Teacher, Chennai",
     date: "February 22, 2026",
