@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaGo Tech - Wedding Invitation Reel Preview (30s)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background: #0f111a;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px 10px;
+    }
+    .header-banner {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header-banner h1 {
+      color: #d4af37;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+    .header-banner p {
+      color: #aaa;
+      font-size: 14px;
+    }
+    /* 9:16 Mobile Reel Container */
+    .reel-container {
+      position: relative;
+      width: 360px;
+      height: 640px;
+      background: #000;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(212, 175, 55, 0.25), 0 0 0 8px #1a1c26;
+    }
+    /* Timeline Layers */
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .layer.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Layer 1: Opening Presenter */
+    .presenter-opening img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Layer 2: Screen Record Showcase */
+    .screen-record-layer {
+      background: #0d0f17;
+      display: flex;
+      flex-direction: column;
+    }
+    .screen-scroll-container {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .screen-img {
+      width: 100%;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    /* Picture-in-Picture (PiP) Presenter Girl */
+    .pip-presenter {
+      position: absolute;
+      top: 24px;
+      right: 16px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #d4af37;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6), 0 0 15px rgba(212,175,55,0.4);
+      overflow: hidden;
+      z-index: 50;
+      animation: pulseGlow 2.5s infinite;
+      transition: all 0.5s ease;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,0.6), 0 0 12px rgba(212,175,55,0.3); }
+      50% { box-shadow: 0 8px 24px rgba(0,0,0,0.6), 0 0 22px rgba(212,175,55,0.7); }
+    }
+    .pip-presenter img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Layer 3: Outro Card */
+    .outro-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Subtitles & Captions Overlay */
+    .captions-overlay {
+      position: absolute;
+      bottom: 70px;
+      left: 15px;
+      right: 15px;
+      z-index: 60;
+      text-align: center;
+      pointer-events: none;
+    }
+    .caption-box {
+      background: rgba(0, 0, 0, 0.78);
+      border: 1.5px solid #d4af37;
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    .caption-tamil {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .caption-highlight {
+      color: #ffd700;
+    }
+    .caption-tanglish {
+      font-size: 12px;
+      color: #ddd;
+      font-style: italic;
+    }
+    /* Progress bar */
+    .progress-bar-container {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      right: 14px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      z-index: 100;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #d4af37, #ff6b6b);
+      transition: width 0.1s linear;
+    }
+    .timer-badge {
+      position: absolute;
+      top: 20px;
+      left: 16px;
+      background: rgba(0,0,0,0.6);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: #d4af37;
+      font-weight: 600;
+      z-index: 100;
+    }
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      align-items: center;
+    }
+    .btn {
+      background: #d4af37;
+      color: #0b0c10;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background: #f7ca44;
+      transform: scale(1.04);
+    }
+    .btn-secondary {
+      background: #1e2230;
+      color: #fff;
+      border: 1px solid #444;
+    }
+    .btn-secondary:hover {
+      background: #2b3145;
+    }
+    /* Script Checklist on side */
+    .script-guide {
+      max-width: 700px;
+      width: 100%;
+      margin-top: 30px;
+      background: #151824;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #282d40;
+    }
+    .script-guide h2 {
+      color: #d4af37;
+      font-size: 20px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #282d40;
+      padding-bottom: 8px;
+    }
+    .timeline-step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #1e2335;
+    }
+    .time-tag {
+      background: #d4af37;
+      color: #000;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 6px;
+      height: fit-content;
+      white-space: nowrap;
+    }
+    .step-content h3 {
+      font-size: 15px;
+      color: #60a5fa;
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-banner">
+    <h1>📱 30-Second Instagram Reel / YouTube Shorts Preview</h1>
+    <p>SaGo Tech Digital Wedding Invitation Promotion</p>
+  </div>
+
+  <div class="reel-container" id="reelBox">
+    <!-- Top Progress Bar -->
+    <div class="progress-bar-container">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="timer-badge" id="timerBadge">00:00 / 00:30</div>
+
+    <!-- Layer 1: Opening Presenter Girl (0s - 5s) -->
+    <div class="layer presenter-opening active" id="layerOpening">
+      <img src="./presenter_opening_chudithar.jpg" alt="Presenter Girl">
+    </div>
+
+    <!-- Layer 2: Screen Record Showcase (5s - 25s) -->
+    <div class="layer screen-record-layer" id="layerScreen">
+      <!-- PiP Presenter Girl (Top Right Corner) -->
+      <div class="pip-presenter" id="pipPresenter">
+        <img src="./presenter_pip_girl.jpg" alt="Presenter PiP">
+      </div>
+      <!-- Scrollable Screenshots Showcase -->
+      <div class="screen-scroll-container">
+        <img src="./welcome_popup_1792950729764.png" id="showcaseImg" class="screen-img" alt="Mobile Screen">
+      </div>
+    </div>
+
+    <!-- Layer 3: Outro Card (25s - 30s) -->
+    <div class="layer outro-layer" id="layerOutro">
+      <img src="./sagotech_outro_card.jpg" alt="SaGo Tech Outro">
+    </div>
+
+    <!-- Captions Overlay -->
+    <div class="captions-overlay">
+      <div class="caption-box">
+        <div class="caption-tamil" id="captionTamil">இன்னமும் Traditional-ஆ Paper Invitation கொடுக்குறீங்களா? ❌</div>
+        <div class="caption-tanglish" id="captionTanglish">Innamum traditional-ah paper invitation kudukureengala?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Playback Controls -->
+  <div class="controls">
+    <button class="btn" id="playBtn" onclick="togglePlay()">▶ Play Preview</button>
+    <button class="btn btn-secondary" onclick="resetPlay()">↺ Restart</button>
+    <button class="btn btn-secondary" id="voiceToggle" onclick="toggleSpeech()">🔊 Voice: On</button>
+  </div>
+
+  <!-- Script Breakdown -->
+  <div class="script-guide">
+    <h2>🎬 30-Second Video Flow & Tamil Voiceover Script</h2>
+
+    <div class="timeline-step">
+      <span class="time-tag">0:00 - 0:05</span>
+      <div class="step-content">
+        <h3>1. Hook Scene (Full Screen Presenter Girl in Chudithar)</h3>
+        <p><strong>தமிழ்:</strong> "இன்னமும் traditional-ஆ paper-லதான் wedding invitation கொடுக்குறீங்களா? போதும்! இதோ உங்களுக்காக SaGo Tech-ன் Modern Website Invitation!"</p>
+        <p><strong>Tanglish:</strong> "Innamum traditional-ah paper-la dhaan wedding invitation kudukureengala? Pothum! Idho ungalukkaaga SaGo Tech-in Modern Website Invitation!"</p>
+      </div>
+    </div>
+
+    <div class="timeline-step">
+      <span class="time-tag">0:05 - 0:10</span>
+      <div class="step-content">
+        <h3>2. Personalized Guest Welcome & Confetti (Girl moves to Top-Right Corner PiP)</h3>
+        <p><strong>தமிழ்:</strong> "ஒவ்வொரு விருந்தினருக்கும் அவங்க பேர்லயே Personalized Welcome and Confetti Animation வரும்!"</p>
+        <p><strong>Tanglish:</strong> "Ovvoru guest-ukkum avanga per-laye Personalized Welcome & Confetti Animation varum!"</p>
+      </div>
+    </div>
+
+    <div class="timeline-step">
+      <span class="time-tag">0:10 - 0:15</span>
+      <div class="step-content">
+        <h3>3. Couple Details & Events Timeline</h3>
+        <p><strong>தமிழ்:</strong> "மணமக்கள் விவரம், நிச்சயதார்த்தம், முகூர்த்தம்னு எல்லா நிகழ்வுகளையும் அழகா பார்க்கலாம்!"</p>
+        <p><strong>Tanglish:</strong> "Manamakkal vivaram, Nichayathartham, Muhurtham-nu ella events-aiyum azhaga paakkalaam!"</p>
+      </div>
+    </div>
+
+    <div class="timeline-step">
+      <span class="time-tag">0:15 - 0:20</span>
+      <div class="step-content">
+        <h3>4. Single Click Google Maps & Bus Route</h3>
+        <p><strong>தமிழ்:</strong> "மண்டபத்துக்கு போக வழிகேட்க தேவையில்லை! Single click Google Maps location & Bus routes இருக்கு!"</p>
+        <p><strong>Tanglish:</strong> "Mandapathukku poga vazhi ketka thevaiyilla! Single click Google Maps location & Bus route irukku!"</p>
+      </div>
+    </div>
+
+    <div class="timeline-step">
+      <span class="time-tag">0:20 - 0:25</span>
+      <div class="step-content">
+        <h3>5. Direct Call & WhatsApp RSVP</h3>
+        <p><strong>தமிழ்:</strong> "விருந்தினர்கள் நேரடியா Phone Call மற்றும் WhatsApp-ல வாழ்த்துகளை தெரிவிக்கலாம்!"</p>
+        <p><strong>Tanglish:</strong> "Direct-ah Phone Call matrum WhatsApp-la vazhthukkalai therivikkalaam!"</p>
+      </div>
+    </div>
+
+    <div class="timeline-step">
+      <span class="time-tag">0:25 - 0:30</span>
+      <div class="step-content">
+        <h3>6. Call to Action / SaGo Tech Outro</h3>
+        <p><strong>தமிழ்:</strong> "உங்க கல்யாணத்தையும் ராயலா மாத்த, இப்போவே SaGo Tech 8220172513-க்கு உடனே Call பண்ணுங்க!"</p>
+        <p><strong>Tanglish:</strong> "Unga kalyanathaiyum royala maatha, ippove SaGo Tech 8220172513-kku udane Call pannunga!"</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentTime = 0;
+    const totalDuration = 30; // 30 seconds
+    let isPlaying = false;
+    let timerInterval = null;
+    let voiceEnabled = true;
+
+    const layerOpening = document.getElementById('layerOpening');
+    const layerScreen = document.getElementById('layerScreen');
+    const layerOutro = document.getElementById('layerOutro');
+    const showcaseImg = document.getElementById('showcaseImg');
+    const captionTamil = document.getElementById('captionTamil');
+    const captionTanglish = document.getElementById('captionTanglish');
+    const progressFill = document.getElementById('progressFill');
+    const timerBadge = document.getElementById('timerBadge');
+    const playBtn = document.getElementById('playBtn');
+
+    // Keyframes for the 30 seconds
+    const scenes = [
+      {
+        start: 0,
+        end: 5,
+        layer: 'opening',
+        tamil: "இன்னமும் Traditional-ஆ Paper Invitation கொடுக்குறீங்களா? ❌ இதோ Modern Website Invitation! ✨",
+        tanglish: "Innamum traditional-ah paper invitation kudukureengala? Idho Modern Website Invitation!",
+        speakText: "இன்னமும் traditional-ஆ paper-லதான் invitation கொடுக்குறீங்களா? இதோ உங்களுக்காக Modern Website Invitation!"
+      },
+      {
+        start: 5,
+        end: 10,
+        layer: 'screen',
+        img: './welcome_popup_1792950729764.png',
+        tamil: "விருந்தினர்களுக்கு Personalized Welcome & Confetti Animation! 🎊",
+        tanglish: "Personalized Guest Welcome link with Confetti Animation!",
+        speakText: "ஒவ்வொரு விருந்தினருக்கும் அவங்க பேர்லயே Personalized Welcome and Confetti Animation வரும்!"
+      },
+      {
+        start: 10,
+        end: 15,
+        layer: 'screen',
+        img: './the_couple_1792950762791.png',
+        tamil: "மணமக்கள் விவரம் & அனைத்து திருமண நிகழ்ச்சிகள் ஒரே இடத்தில்! 💑📅",
+        tanglish: "Bride & Groom details with full Events Timeline!",
+        speakText: "மணமக்கள் விவரம், நிச்சயதார்த்தம், முகூர்த்தம்னு எல்லா நிகழ்வுகளையும் அழகா பார்க்கலாம்!"
+      },
+      {
+        start: 15,
+        end: 20,
+        layer: 'screen',
+        img: './venue_section_1792950813704.png',
+        tamil: "வழிகேட்க தேவையில்லை! Single-Click Google Maps & Bus Route 📍🚌",
+        tanglish: "Direct 1-Click Google Maps Location & Bus Route stops!",
+        speakText: "மண்டபத்துக்கு போக வழிகேட்க தேவையில்லை! Single click Google Maps location & Bus routes இருக்கு!"
+      },
+      {
+        start: 20,
+        end: 25,
+        layer: 'screen',
+        img: './footer_section_1792950946754.png',
+        tamil: "விருந்தினர்கள் நேரடியா Call & WhatsApp-ல் வாழ்த்து சொல்லலாம்! 📞💬",
+        tanglish: "Instant Phone Call & WhatsApp greetings support!",
+        speakText: "நேரடியா Phone Call மற்றும் WhatsApp-ல வாழ்த்துகளை தெரிவிக்கலாம்!"
+      },
+      {
+        start: 25,
+        end: 30,
+        layer: 'outro',
+        tamil: "இப்போவே SaGo Tech 8220172513-க்கு உடனே Call பண்ணுங்க! ⚡",
+        tanglish: "Contact SaGo Tech today: +91 8220172513 | Call Now!",
+        speakText: "உங்க கல்யாணத்தையும் இதே மாதிரி ராயலா மாத்த, இப்போவே SaGo Tech 8220172513-க்கு உடனே Call பண்ணுங்க!"
+      }
+    ];
+
+    let lastSceneIndex = -1;
+
+    function updateReelState() {
+      // Progress & timer
+      const pct = (currentTime / totalDuration) * 100;
+      progressFill.style.width = pct + '%';
+      const secStr = Math.floor(currentTime).toString().padStart(2, '0');
+      timerBadge.innerText = `00:${secStr} / 00:30`;
+
+      // Find current scene
+      const sceneIndex = scenes.findIndex(s => currentTime >= s.start && currentTime < s.end);
+      if (sceneIndex !== -1 && sceneIndex !== lastSceneIndex) {
+        lastSceneIndex = sceneIndex;
+        const currentScene = scenes[sceneIndex];
+
+        // Toggle layers
+        layerOpening.classList.remove('active');
+        layerScreen.classList.remove('active');
+        layerOutro.classList.remove('active');
+
+        if (currentScene.layer === 'opening') {
+          layerOpening.classList.add('active');
+        } else if (currentScene.layer === 'screen') {
+          layerScreen.classList.add('active');
+          showcaseImg.src = currentScene.img;
+        } else if (currentScene.layer === 'outro') {
+          layerOutro.classList.add('active');
+        }
+
+        // Update Captions
+        captionTamil.innerHTML = currentScene.tamil;
+        captionTanglish.innerHTML = currentScene.tanglish;
+
+        // Speak if enabled
+        if (voiceEnabled && 'speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(currentScene.speakText);
+          utterance.lang = 'ta-IN';
+          utterance.rate = 1.05;
+          window.speechSynthesis.speak(utterance);
+        }
+      }
+
+      if (currentTime >= totalDuration) {
+        pausePlay();
+        currentTime = totalDuration;
+      }
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        pausePlay();
+      } else {
+        if (currentTime >= totalDuration) {
+          currentTime = 0;
+          lastSceneIndex = -1;
+        }
+        startPlay();
+      }
+    }
+
+    function startPlay() {
+      isPlaying = true;
+      playBtn.innerText = '⏸ Pause';
+      timerInterval = setInterval(() => {
+        currentTime += 0.25;
+        updateReelState();
+      }, 250);
+    }
+
+    function pausePlay() {
+      isPlaying = false;
+      playBtn.innerText = '▶ Play Preview';
+      clearInterval(timerInterval);
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function resetPlay() {
+      pausePlay();
+      currentTime = 0;
+      lastSceneIndex = -1;
+      updateReelState();
+    }
+
+    function toggleSpeech() {
+      voiceEnabled = !voiceEnabled;
+      document.getElementById('voiceToggle').innerText = voiceEnabled ? '🔊 Voice: On' : '🔇 Voice: Off';
+      if (!voiceEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    // Initialize
+    updateReelState();
+  </script>
+</body>
+</html>
